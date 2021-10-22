@@ -6,10 +6,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+          @if (Session::has('admin'))
+          <li class="nav-item">
+            <a class="{{'/admin/dash' == request()->path() ? 'nav-link active' : 'nav-link'}}" aria-current="page" href="{{route('admindash')}}">Home</a>
+          </li>
+          @endif
           @if (Session::has('user'))
           <li class="nav-item">
-            <a class="{{'/user/home' == request()->path() ? 'nav-link active' : 'nav-link'}}" aria-current="page" href="{{route('userdash')}}">Home</a>
+            <a class="{{'/user/dash' == request()->path() ? 'nav-link active' : 'nav-link'}}" aria-current="page" href="{{route('userdash')}}">Home</a>
           </li>
+          <li class="nav-item">
+            <a class="{{'/admin/userlist' == request()->path() ? 'nav-link active' : 'nav-link'}}" aria-current="page" href="{{route('userlist')}}">User list</a>
+          </li>
+          @endif
+          @if (Session::has('admin') || Session::has('user'))
           <li class="nav-item">
             <a class="{{'logout' == request()->path() ? 'nav-link active' : 'nav-link'}}" href="{{route('logout')}}">logout</a>
           </li>

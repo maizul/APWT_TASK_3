@@ -28,6 +28,7 @@ class loginController extends Controller
         elseif($admin)
         {
             session()->put('user',$admin->name);
+            session()->put('adminId',$admin->id);
             return redirect()->route('admindash');
         }
         return redirect()->route('login')->with('err', 'These credentials do not match our records');
