@@ -18,10 +18,10 @@ use App\Http\Controllers\loginController;
 
 Route::get('/', [userController::class, 'publichome'])->name('welcome');
 
-Route::get('/admin/dash', [adminController::class, 'admindash'])->name('admindash');
-Route::get('/user/dash', [userController::class, 'userdash'])->name('userdash');
+Route::get('/admin/dash', [adminController::class, 'admindash'])->name('admindash')->middleware('checkUser');
+Route::get('/user/dash', [userController::class, 'userdash'])->name('userdash')->middleware('checkUser');
 
-Route::get('/admin/userlist', [adminController::class, 'userlist'])->name('userlist');
+Route::get('/admin/userlist', [adminController::class, 'userlist'])->name('userlist')->middleware('checkUser');
 
 Route::get('/register', [userController::class, 'register'])->name('register');
 Route::post('/register', [userController::class, 'registration'])->name('register');
