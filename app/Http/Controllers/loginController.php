@@ -42,7 +42,7 @@ class loginController extends Controller
         $user -> password = $req->password;
         $user->save();
 
-        session()->put('user',$user->name);
+        session()->put('user',$user->userId);
         return redirect(route('welcome'));
     }
 
